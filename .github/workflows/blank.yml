@@ -19,8 +19,7 @@ jobs:
         git config user.email "shaun.kavanagh.vechain.bot@gmail.com"
         git fetch --prune --unshallow
         git checkout main
-        git config --global credential.helper store
-        echo "https://github.com/skavechain-bot/PAT-user-testing.git\nusername=${{ secrets.PAT_BOT_TOKEN }}" > ~/.git-credentials
+        git remote set-url origin "https://${{ secrets.PAT_BOT_TOKEN }}@github.com/Skavechain/PAT-user-testing.git"
 
     - name: Merge develop into main
       run: |
