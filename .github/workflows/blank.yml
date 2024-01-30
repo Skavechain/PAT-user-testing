@@ -6,7 +6,7 @@ on:
       - develop
 env:
   GH_TOKEN: ${{ secrets.GH_TOKEN }}
-  PAT_BOT_TOKEN: ${{ secrets.GH_TOKEN }}
+  PAT_BOT_TOKEN: ${{ secrets.PAT_BOT_TOKEN }}
 
 jobs:
   merge:
