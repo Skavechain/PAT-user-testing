@@ -33,8 +33,11 @@ jobs:
 
     - name: Push changes
       run: |
-        git config user.name "skavechain-bot"
-        git config user.email "shaun.kavanagh.vechain.bot@gmail.com"
+        gh auth login --with-token "${{ secrets.PAT_BOT_TOKEN }}"
+        gh repo view Skavechain/PAT-user-testing  # For verification
+        gh repo clone Skavechain/PAT-user-testing  # For verification
+        git push origin main
+
         git push origin main
 
     - name: Clean up
