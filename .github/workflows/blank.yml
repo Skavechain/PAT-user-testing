@@ -11,49 +11,12 @@ env:
 jobs:
   merge:
     runs-on: ubuntu-latest
-    
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v2
-
-    - name: Set up Git
-      uses: actions/setup-git@v2
-      with:
-        user.email: shaun.kavanagh.vechain.bot@gmail.com
-        user.name: skavechain-bot
-        token: ${{ secrets.PAT_BOT_TOKEN }}
-        
-    - name: Set up Git
-      run: |
-        git config user.name "skavechain-bot"
-        git config user.email "shaun.kavanagh.vechain.bot@gmail.com"
-        git fetch --prune --unshallow
-        git checkout main
-        git remote set-url origin "https://${{ secrets.PAT_BOT_TOKEN }}@github.com/Skavechain/PAT-user-testing.git"
-      
-    - name: Debug Git Config
-      run: |
-        git config --get remote.origin.url
-        
-    - name: Merge develop into main
-      run: |
-        git config user.name "skavechain-bot"
-        git config user.email "shaun.kavanagh.vechain.bot@gmail.com"
-        git merge --no-ff ${{ github.event.before }}
-      env:
-        GH_TOKEN: ${{ secrets.GH_TOKEN }}
-
-    - name: Push changes
-      run: |
-        git config --global user.name "skavechain-bot"
-        git config --global user.email "shaun.kavanagh.vechain.bot@gmail.com"
-        git remote set-url origin "https://${{ secrets.PAT_BOT_TOKEN }}@github.com/Skavechain/PAT-user-testing.git"
-        
-        git push origin main
-      env:
-        PAT_BOT_TOKEN: ${{ secrets.PAT_BOT_TOKEN }}
-        
-    - name: Clean up
-      run: |
-        git checkout ${{ github.event.before }}
-    
+      - uses: actions/checkout@v2
+      - uses: everlytic/branch-merge@1.1.2
+        with:
+          github_token: ${{ secrets.PAT_BOT_TOKEN }}
+          source_ref: ${{ github.ref }}
+          target_branch: 'main'
+          commit_message_template: '[Automated] Merged {source_ref} into target {target_branch}'
+          
