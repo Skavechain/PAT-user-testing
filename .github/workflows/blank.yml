@@ -20,7 +20,11 @@ jobs:
         git fetch --prune --unshallow
         git checkout main
         git remote set-url origin "https://${{ secrets.PAT_BOT_TOKEN }}@github.com/Skavechain/PAT-user-testing.git"
-
+      
+    - name: Debug Git Config
+      run: |
+        git config --get remote.origin.url
+        
     - name: Merge develop into main
       run: |
         git merge --no-ff ${{ github.event.before }}
