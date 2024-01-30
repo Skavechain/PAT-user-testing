@@ -27,10 +27,14 @@ jobs:
         
     - name: Merge develop into main
       run: |
+        git config user.name "skavechain-bot"
+        git config user.email "shaun.kavanagh.vechain.bot@gmail.com"
         git merge --no-ff ${{ github.event.before }}
 
     - name: Push changes
       run: |
+        git config user.name "skavechain-bot"
+        git config user.email "shaun.kavanagh.vechain.bot@gmail.com"
         git push origin main
 
     - name: Clean up
