@@ -38,13 +38,13 @@ jobs:
 
     - name: Push changes
       run: |
-        git config user.name "skavechain-bot"
-        git config user.email "shaun.kavanagh.vechain.bot@gmail.com"
-        export GIT_TERMINAL_PROMPT=0
-        export GIT_ASKPASS=/bin/echo
+        git config --global user.name "skavechain-bot"
+        git config --global user.email "shaun.kavanagh.vechain.bot@gmail.com"
+        git remote set-url origin "https://${{ secrets.PAT_BOT_TOKEN }}@github.com/Skavechain/PAT-user-testing.git"
+        
         git push origin main
       env:
-        GH_TOKEN: ${{ secrets.GH_TOKEN }}
+        PAT_BOT_TOKEN: ${{ secrets.PAT_BOT_TOKEN }}
         
     - name: Clean up
       run: |
