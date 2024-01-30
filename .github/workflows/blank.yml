@@ -33,6 +33,8 @@ jobs:
         git config user.name "skavechain-bot"
         git config user.email "shaun.kavanagh.vechain.bot@gmail.com"
         git merge --no-ff ${{ github.event.before }}
+      env:
+        GH_TOKEN: ${{ secrets.GH_TOKEN }}
 
     - name: Push changes
       run: |
