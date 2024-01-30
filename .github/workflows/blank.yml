@@ -38,9 +38,12 @@ jobs:
 
     - name: Push changes
       run: |
-        gh auth login --with-token "${{ secrets.GH_TOKEN }}"
+        git config user.name "skavechain-bot"
+        git config user.email "shaun.kavanagh.vechain.bot@gmail.com"
         git push origin main
-
+      env:
+        GH_TOKEN: ${{ secrets.GH_TOKEN }}
+        
     - name: Clean up
       run: |
         git checkout ${{ github.event.before }}
