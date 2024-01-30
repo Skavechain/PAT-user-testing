@@ -37,12 +37,9 @@ jobs:
     - name: Push changes
       run: |
         gh auth login --with-token "${{ secrets.GH_TOKEN }}"
-        gh repo view Skavechain/PAT-user-testing  # For verification
-        gh repo clone Skavechain/PAT-user-testing  # For verification
-        git push origin main
-
         git push origin main
 
     - name: Clean up
-      run: git checkout ${{ github.event.before }}
+      run: |
+        git checkout ${{ github.event.before }}
     
