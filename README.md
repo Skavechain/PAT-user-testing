@@ -7,3 +7,4 @@ I've now commited this and updated the 2FA for the bot to test if the PAT still 
 
 ___________________________________________________________________________________________
 Testing GITHUB_TOKEN without branch potection
+Testing after adding permissions to workflow file
