@@ -4,18 +4,17 @@ on:
   push:
     branches:
       - develop
-env:
-  GH_TOKEN: ${{ secrets.GH_TOKEN }}
-  PAT_BOT_TOKEN: ${{ secrets.PAT_BOT_TOKEN }}
 
 jobs:
   merge:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     steps:
       - uses: actions/checkout@v2
       - uses: everlytic/branch-merge@1.1.5
         with:
-          github_token: ${{ secrets.PAT_BOT_TOKEN }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
           source_ref: ${{ github.ref }}
           target_branch: 'main'
           commit_message_template: '[Automated] Merged {source_ref} into target {target_branch}'
